@@ -89,7 +89,7 @@ public class YunOSOrder extends CordovaPlugin {
 			           price = options.getString("price");
 			           partner_notify_url = options.getString("partner_notify_url");
 			            
-			           Log.d(LOG_TAG, "subject_id: " + subject_id + "subject:" + subject + "price" + price + "partner_notify_url" + partner_notify_url + "partner_order_no" + partner_order_no);
+			           Log.d(LOG_TAG, "subject_id: " + subject_id + "subject:" + subject + "price" + price + "partner_notify_url" + partner_notify_url + "partner_order_no" + dt);
 			            
 			        } catch (Exception e) {
 			            PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
