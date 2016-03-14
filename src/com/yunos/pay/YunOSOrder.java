@@ -29,11 +29,6 @@ import com.aliyun.pay.order.YunOSOrderManager;
 import com.yunos.pay.util.Config;
 
 public class YunOSOrder extends CordovaPlugin {
-
-	//private Button paybutton;
-	//private Button unsignButton;
-	//private EditText orderIdEdit;
-	//private EditText priceEdit;
 	
 	protected static final String LOG_TAG = "YunOSOrder__pay";
 	private CallbackContext callbackContext = null;
