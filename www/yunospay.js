@@ -6,8 +6,7 @@ module.exports = {
         subject_id: 123456789,
         subject: "test",
         price: 100,     //以,分為單位
-        partner_notify_url: "http://www.bais.com.tw",
-        partner_order_no: ""
+        partner_notify_url: "http://www.bais.com.tw"
     },
 
     pay: function (options, successCallback, errorCallback) {
