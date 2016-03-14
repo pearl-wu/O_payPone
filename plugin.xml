@@ -8,8 +8,8 @@
     <description>YunOS PAY Plugin</description>
     <license>pearl</license>
     <keywords>YunOS</keywords>
-    <repo></repo>
-    <issue></issue>
+    <repo>https://github.com/pearl-wu/O_payPone.git</repo>
+    <issue>https://github.com/pearl-wu/O_payPone.git</issue>
 
     <js-module src="www/yunospay.js" name="yunospay">
         <clobbers target="yunospay" />
