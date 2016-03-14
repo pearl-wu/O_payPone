@@ -13,5 +13,9 @@ module.exports = {
     pay: function (options, successCallback, errorCallback) {
         options = this.merge(this.ENTER_OPTIONS, options);
           exec(successCallback, errorCallback, "YunOSOrder", "Pay", [options]);
+    },
+    idchange: function (mag, successCallback, errorCallback) {
+        options = this.merge(this.ENTER_OPTIONS, options);
+          exec(successCallback, errorCallback, "YunOSOrder", "IdChange", [mag]);
     }
 };
