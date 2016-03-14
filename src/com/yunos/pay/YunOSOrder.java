@@ -11,16 +11,10 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aliyun.pay.client.PayClient;
@@ -34,6 +28,7 @@ public class YunOSOrder extends CordovaPlugin {
 	private CallbackContext callbackContext = null;
 	
 	
+	@SuppressLint("SimpleDateFormat") 
 	public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
 		
 		if(action.equals("Pay")){			
@@ -98,14 +93,14 @@ public class YunOSOrder extends CordovaPlugin {
 		        }
 			
 			
-			// TODO Auto-generated method stub
 			orderManager.GenerateOrder(Config.getPrikey(), Config.getPartner(), subject_id, subject, price, Config.getPartnerNotifyUrl(partner_notify_url), dt);
 			String order = orderManager.getOrder();
 			String sign = orderManager.getSign();
 			
+			Log.i(LOG_TAG, "order:" + order + " , sign:" + sign );
 			
 			/***********************************訂單結束*******************************************/
-			/*YunOSPayResult payResult = null;
+			YunOSPayResult payResult = null;
 			String errorMsg = "";
 			
 			Bundle bundle = new Bundle();
@@ -124,16 +119,8 @@ public class YunOSOrder extends CordovaPlugin {
 			}
 			
 			Toast.makeText(cordova.getActivity().getApplicationContext(), msg, 20).show();
-			return msg;*/
-		
-			//Toast.makeText(cordova.getActivity().getApplicationContext(), result, 20).show();
-
+			//return msg;
 	}
 	
-
-	public boolean onCreateOptionsMenu(Menu menu) {
-		//getMenuInflater().inflate(R.menu.main, menu);
-		return false;
-	}
 
 }
