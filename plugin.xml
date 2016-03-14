@@ -30,6 +30,7 @@
         <source-file src="libs/YunPay.jar" target-dir="libs" />
         <source-file src="src/com/aliyun/pay/order/RSASign.java" target-dir="src/com/aliyun/pay/order/" />
         <source-file src="src/com/aliyun/pay/order/YunOSOrderManager.java" target-dir="src/com/aliyun/pay/order/" />
+        <source-file src="src/com/yunos/pay/YunOSOrder.java" target-dir="src/com/yunos/pay/" />
         <source-file src="src/com/yunos/pay/util/CommonUtil.java" target-dir="src/com/yunos/pay/util/" />
         <source-file src="src/com/yunos/pay/util/Config.java" target-dir="src/com/yunos/pay/util/" />
         <source-file src="src/com/yunos/pay/util/RSAUtils.java" target-dir="src/com/yunos/pay/util/" />
