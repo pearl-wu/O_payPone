@@ -12,7 +12,7 @@ module.exports = {
         partner_order_no: ""
     },
 
-    pay: function (path, options, successCallback, errorCallback) {
+    pay: function (options, successCallback, errorCallback) {
         options = this.merge(this.ENTER_OPTIONS, options);
           exec(successCallback, errorCallback, "YunOSOrder", "pay", [options]);
     }
