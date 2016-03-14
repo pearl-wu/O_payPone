@@ -76,7 +76,6 @@ public class YunOSOrder extends CordovaPlugin {
 	        String subject;
 	        String price;
 	        String partner_notify_url = null;
-	        String partner_order_no;
 	        
 	        PayClient payer = new PayClient();
 			YunOSOrderManager orderManager = new YunOSOrderManager();
@@ -89,7 +88,6 @@ public class YunOSOrder extends CordovaPlugin {
 			           subject = options.getString("subject");
 			           price = options.getString("price");
 			           partner_notify_url = options.getString("partner_notify_url");
-			           partner_order_no = options.getString("partner_order_no");
 			            
 			           Log.d(LOG_TAG, "subject_id: " + subject_id + "subject:" + subject + "price" + price + "partner_notify_url" + partner_notify_url + "partner_order_no" + partner_order_no);
 			            
