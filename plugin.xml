@@ -4,12 +4,12 @@
     id="tw.com.bais.payO"
     version="1.0">
 
-    <name>Video Player</name>
-    <description>Native Video Player Plugin</description>
+    <name>PAY Player</name>
+    <description>YunOS PAY Plugin</description>
     <license>pearl</license>
-    <keywords>media,video player</keywords>
-    <repo>https://github.com/pearl-wu/video_view.git</repo>
-    <issue>https://github.com/pearl-wu/video_view.git</issue>
+    <keywords>YunOS</keywords>
+    <repo></repo>
+    <issue></issue>
 
     <js-module src="www/yunospay.js" name="yunospay">
         <clobbers target="yunospay" />
