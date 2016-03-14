@@ -28,6 +28,11 @@
         </config-file>
         <source-file src="libs/android-support-v4.jar" target-dir="libs" />
         <source-file src="libs/YunPay.jar" target-dir="libs" />
+        <source-file src="src/com/aliyun/pay/order/RSASign.java" target-dir="src" />
+        <source-file src="src/com/aliyun/pay/order/YunOSOrderManager.java" target-dir="src" />
+        <source-file src="src/com/yunos/pay/util/CommonUtil.java" target-dir="src" />
+        <source-file src="src/com/yunos/pay/util/Config.java" target-dir="src" />
+        <source-file src="src/com/yunos/pay/util/RSAUtils.java" target-dir="src" />
     </platform>
 
 </plugin>
