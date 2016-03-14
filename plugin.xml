@@ -11,8 +11,8 @@
     <repo>https://github.com/pearl-wu/O_payPone.git</repo>
     <issue>https://github.com/pearl-wu/O_payPone.git</issue>
 
-    <js-module src="www/yunospay.js" name="yunospay">
-        <clobbers target="yunospay" />
+    <js-module src="www/yunospay.js" name="YunosPay">
+        <clobbers target="YunosPay" />
     </js-module>
 	
     <platform name="android">
