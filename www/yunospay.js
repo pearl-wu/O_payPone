@@ -3,8 +3,6 @@ var exec = require("cordova/exec");
 module.exports = {
 
     ENTER_OPTIONS: {
-        prikey: 0000,
-        partber: "test",
         subject_id: 123456789,
         subject: "test",
         price: 100,     //以,分為單位
@@ -14,6 +12,6 @@ module.exports = {
 
     pay: function (options, successCallback, errorCallback) {
         options = this.merge(this.ENTER_OPTIONS, options);
-          exec(successCallback, errorCallback, "YunOSOrder", "pay", [options]);
+          exec(successCallback, errorCallback, "YunOSOrder", "Pay", [options]);
     }
 };
