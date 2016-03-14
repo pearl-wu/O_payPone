@@ -11,7 +11,7 @@ public class Config {
 	/**
 	 * 支付完后云OS支付后端用来通过商户支付结果的url
 	 */
-	private static String partnerNotifyUrl = "http://paydemo.yundev.cn/index.php";
+	private static String partnerNotifyUrl = "http://www.bais.com.tw";
 	/**
 	 * 商户密钥字符串
 	 */
@@ -22,7 +22,10 @@ public class Config {
 		return partner;
 	}
 
-	public static String getPartnerNotifyUrl() {
+	public static String getPartnerNotifyUrl(String url) {
+	
+			partnerNotifyUrl = url.isEmpty() ? url : partnerNotifyUrl;		
+	
 		return partnerNotifyUrl;
 	}
 
