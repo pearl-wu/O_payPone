@@ -2,7 +2,7 @@ var exec = require("cordova/exec");
 
 module.exports = {
 
-    DEFAULT_OPTIONS: {
+    ENTER_OPTIONS: {
         prikey: 0000,
         partber: "test",
         subject_id: 123456789,
@@ -13,7 +13,7 @@ module.exports = {
     },
 
     pay: function (path, options, successCallback, errorCallback) {
-        options = this.merge(this.DEFAULT_OPTIONS, options);
+        options = this.merge(this.ENTER_OPTIONS, options);
         exec(successCallback, errorCallback, "YunOSOrder", "pay", [path, options]);
     }
 };
