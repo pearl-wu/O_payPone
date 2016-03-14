@@ -3,9 +3,9 @@ var exec = require("cordova/exec");
 module.exports = {
 
     ENTER_OPTIONS: {
-        subject_id: 123456789,
+        subject_id: "123456789",
         subject: "test",
-        price: 100,     //以,分為單位
+        price: "100",     //以,分為單位
         partner_notify_url: "http://www.bais.com.tw"
     },
 
