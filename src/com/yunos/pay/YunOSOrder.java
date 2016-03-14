@@ -1,4 +1,4 @@
-package com.yunos.pay.;
+package com.yunos.pay;
 
 
 import java.text.SimpleDateFormat;
