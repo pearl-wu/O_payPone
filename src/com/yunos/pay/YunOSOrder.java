@@ -12,7 +12,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,18 +30,12 @@ public class YunOSOrder extends CordovaPlugin {
 	protected static final String LOG_TAG = "YunOSOrder__pay";
 	private CallbackContext callbackContext = null;
 	
-	
-	@SuppressLint("SimpleDateFormat") 
 	public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
 		
 		if(action.equals("Pay")){			
 			final JSONObject options = args.getJSONObject(0);
-			Date dt = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-			activity_pay(sdf.format(dt), options);
-			
-			
-			///Log.i(LOG_TAG, "Pay Pay Pay Pay");
+			activity_pay(options, callbackContext);
+					///Log.i(LOG_TAG, "Pay Pay Pay Pay");
 			return true;
 		}else if(action.equals("IdChange")){
 			boolean boo = args.getBoolean(0);
@@ -63,16 +60,20 @@ public class YunOSOrder extends CordovaPlugin {
 	}
 	
 	
-	/**********************************產生訂單**********************************************/
-	public void activity_pay(final String dt, final JSONObject options){	
+	/**********************************產生訂單
+	 * @param callbackContext **********************************************/
+	@SuppressLint("SimpleDateFormat") 
+	public void activity_pay(final JSONObject options, CallbackContext callbackContext){	
 		
-			
 			String msg = "false";
 			String subject_id = null;
 	        String subject = null;
 	        String price = null;
 	        String partner_notify_url = null;
 	        
+	        Date dt = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+
 	        PayClient payer = new PayClient();
 			YunOSOrderManager orderManager = new YunOSOrderManager();
 			
@@ -83,26 +84,28 @@ public class YunOSOrder extends CordovaPlugin {
 		           price = options.getString("price");
 		           partner_notify_url = options.getString("partner_notify_url");
 		            
-		           Log.d(LOG_TAG, "subject_id: " + subject_id + " , subject:" + subject + " , price:" + price + " , partner_notify_url" + partner_notify_url + " , partner_order_no:" + dt);
-		            
+		           Log.d(LOG_TAG, "subject_id: " + subject_id + " , subject:" + subject + " , price:" + price + " , partner_notify_url" + partner_notify_url + " , partner_order_no:" + sdf.format(dt));
 		        } catch (Exception e) {
 		            PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
 		            result.setKeepCallback(false); // release status callback in JS side
 		            callbackContext.sendPluginResult(result);
 		            callbackContext = null;
+		            //return;
 		        }
 			
+			/*IntentFilter intentFilter = new IntentFilter("true");
+			cordova.getActivity().registerReceiver(new echo(), intentFilter);
+			this.callbackContext = callbackContext;*/	
 			
-			orderManager.GenerateOrder(Config.getPrikey(), Config.getPartner(), subject_id, subject, price, Config.getPartnerNotifyUrl(partner_notify_url), dt);
+			
+			orderManager.GenerateOrder(Config.getPrikey(), Config.getPartner(), subject_id, subject, price, Config.getPartnerNotifyUrl(partner_notify_url), sdf.format(dt));
 			String order = orderManager.getOrder();
 			String sign = orderManager.getSign();
 			
-			Log.i(LOG_TAG, "order:" + order + " , sign:" + sign );
 			
 			/***********************************訂單結束*******************************************/
 			YunOSPayResult payResult = null;
 			String errorMsg = "";
-			
 			Bundle bundle = new Bundle();
 			bundle.putString("provider", "alipay");
 			try {
@@ -119,8 +122,25 @@ public class YunOSOrder extends CordovaPlugin {
 			}
 			
 			Toast.makeText(cordova.getActivity().getApplicationContext(), msg, 20).show();
-			//return msg;
 	}
 	
+	public class echo extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			
+			final String action = intent.getAction();
+			if(action.equals("")){
+				Toast.makeText(cordova.getActivity(), "", Toast.LENGTH_SHORT).show();
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ""));
+            } else {
+            	Toast.makeText(cordova.getActivity(), "", Toast.LENGTH_LONG).show();
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, ""));
+			}			
+		}
+		
+		
+	}	
 
 }
