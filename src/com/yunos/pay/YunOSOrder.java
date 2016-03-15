@@ -43,9 +43,9 @@ public class YunOSOrder extends CordovaPlugin {
 			//activity_pay(options, callbackContext);
 			return true;
 		}else if(action.equals("IdChange")){
-			String boo = args.getString(0);
+			boolean boo = args.getBoolean(0);
 			Toast.makeText(cordova.getActivity().getApplicationContext(), "---(IdChange)---" + boo, 20).show();
-				if(boo == "false"){
+				if(!boo){
 					//Toast.makeText(cordova.getActivity().getApplicationContext(), "---(IdChange)false---", 20).show();
 					mess = "---(IdChange)false---";
 					intentFilter =  new IntentFilter("false");
