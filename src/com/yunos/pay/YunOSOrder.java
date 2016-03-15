@@ -108,6 +108,7 @@ public class YunOSOrder extends CordovaPlugin {
 			String errorMsg = "";
 			Bundle bundle = new Bundle();
 			bundle.putString("provider", "alipay");
+			
 			try {
 				if (payer != null) {
 					payResult = payer.YunPay(cordova.getActivity().getBaseContext(), order, sign, bundle);
@@ -115,13 +116,16 @@ public class YunOSOrder extends CordovaPlugin {
 			} catch (Exception e) {
 				errorMsg = e.getMessage() + "----" + e.getLocalizedMessage();
 			}
-			if (payResult != null) {
+			
+			Toast.makeText(cordova.getActivity().getApplicationContext(), payResult.toString(), 20).show();
+			
+			/*if (payResult != null) {
 				msg = payResult.getPayResult() ? "付款成功" : "付款失敗," + payResult.getPayFeedback();
 			} else {
 				msg = "支付調啟失敗:" + errorMsg;
-			}
+			}*/
 			
-			Toast.makeText(cordova.getActivity().getApplicationContext(), msg, 20).show();
+			
 	}
 	
 	public class echo extends BroadcastReceiver{
