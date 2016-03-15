@@ -29,43 +29,60 @@ public class YunOSOrder extends CordovaPlugin {
 	
 	protected static final String LOG_TAG = "YunOSOrder__pay";
 	private CallbackContext callbackContext = null;
+	private IntentFilter intentFilter;
+	private String mess;
 	
 	public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
 		
 		if(action.equals("Pay")){			
 			final JSONObject options = args.getJSONObject(0);
-			activity_pay(options, callbackContext);
 					///Log.i(LOG_TAG, "Pay Pay Pay Pay");
+			mess = "(Pay)true---";
+			intentFilter =  new IntentFilter("true");
+			Toast.makeText(cordova.getActivity().getApplicationContext(), "---Pay---", 20).show();
+			//activity_pay(options, callbackContext);
 			return true;
 		}else if(action.equals("IdChange")){
-			boolean boo = args.getBoolean(0);
-				if(!boo){
+			String boo = args.getString(0);
+			Toast.makeText(cordova.getActivity().getApplicationContext(), "---(IdChange)---" + boo, 20).show();
+				if(boo == "false"){
+					//Toast.makeText(cordova.getActivity().getApplicationContext(), "---(IdChange)false---", 20).show();
+					mess = "---(IdChange)false---";
+					intentFilter =  new IntentFilter("false");
+					callbackContext = null;
+					//return false;
+				}else{
+					mess = "---(IdChange)true---";
+					intentFilter.addAction("true");
 					
-					Toast.makeText(cordova.getActivity().getApplicationContext(), "---關閉此功能---", 20).show();
-					return false;
-				}
-					
-					new Thread() {
-						public void run() {
-							Intent intent = new Intent();
-							intent.setClassName("com.yunos.tv.payment", "com.yunos.tv.payment.TVPayMainActivity");
-							intent.putExtra("operate", "alitv.unsign");
-			    			cordova.getActivity().startActivity(intent);
-			    		}
-			    	}.start();
-				return true;
+					//Toast.makeText(cordova.getActivity().getApplicationContext(), "---true---", 20).show();
+						
+						new Thread() {
+							public void run() {
+								Intent intent = new Intent();
+								intent.setClassName("com.yunos.tv.payment", "com.yunos.tv.payment.TVPayMainActivity");
+								intent.putExtra("operate", "alitv.unsign");
+				    			cordova.getActivity().startActivity(intent);
+				    		}
+				    	}.start();					
+				} 	
+
+			return true;
 		}
 	
+		cordova.getActivity().registerReceiver(new echo(mess), intentFilter);
+		this.callbackContext = callbackContext;
+		
 		return false;
 	}
 	
 	
-	/**********************************產生訂單
+	/***********************************CREATE
 	 * @param callbackContext **********************************************/
 	@SuppressLint("SimpleDateFormat") 
 	public void activity_pay(final JSONObject options, CallbackContext callbackContext){	
 		
-			String msg = "false";
+			String msg;
 			String subject_id = null;
 	        String subject = null;
 	        String price = null;
@@ -84,18 +101,14 @@ public class YunOSOrder extends CordovaPlugin {
 		           price = options.getString("price");
 		           partner_notify_url = options.getString("partner_notify_url");
 		            
-		           Log.d(LOG_TAG, "subject_id: " + subject_id + " , subject:" + subject + " , price:" + price + " , partner_notify_url" + partner_notify_url + " , partner_order_no:" + sdf.format(dt));
+		           //Log.d(LOG_TAG, "subject_id: " + subject_id + " , subject:" + subject + " , price:" + price + " , partner_notify_url" + partner_notify_url + " , partner_order_no:" + sdf.format(dt));
 		        } catch (Exception e) {
 		            PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
 		            result.setKeepCallback(false); // release status callback in JS side
 		            callbackContext.sendPluginResult(result);
 		            callbackContext = null;
-		            //return;
+		            return;
 		        }
-			
-			/*IntentFilter intentFilter = new IntentFilter("true");
-			cordova.getActivity().registerReceiver(new echo(), intentFilter);
-			this.callbackContext = callbackContext;*/	
 			
 			
 			orderManager.GenerateOrder(Config.getPrikey(), Config.getPartner(), subject_id, subject, price, Config.getPartnerNotifyUrl(partner_notify_url), sdf.format(dt));
@@ -103,7 +116,7 @@ public class YunOSOrder extends CordovaPlugin {
 			String sign = orderManager.getSign();
 			
 			
-			/***********************************訂單結束*******************************************/
+			/***********************************END*******************************************/
 			YunOSPayResult payResult = null;
 			String errorMsg = "";
 			Bundle bundle = new Bundle();
@@ -117,30 +130,34 @@ public class YunOSOrder extends CordovaPlugin {
 				errorMsg = e.getMessage() + "----" + e.getLocalizedMessage();
 			}
 			
-			Toast.makeText(cordova.getActivity().getApplicationContext(), payResult.toString(), 20).show();
 			
-			/*if (payResult != null) {
-				msg = payResult.getPayResult() ? "付款成功" : "付款失敗," + payResult.getPayFeedback();
+			if (payResult != null) {
+				msg = payResult.getPayResult() ? "PAY success " : "PAY error," + payResult.getPayFeedback();
 			} else {
-				msg = "支付調啟失敗:" + errorMsg;
-			}*/
+				msg = "(YunPay)ERROR:" + errorMsg;
+			}
 			
-			
+			//Toast.makeText(cordova.getActivity().getApplicationContext(), payResult.toString(), 20).show();
 	}
 	
 	public class echo extends BroadcastReceiver{
-
+		private String meg; 
+		
+		public echo(String m){
+			meg = m;
+		}
+		
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
-			
+			context.toString();
 			final String action = intent.getAction();
-			if(action.equals("")){
-				Toast.makeText(cordova.getActivity(), "", Toast.LENGTH_SHORT).show();
-                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ""));
+			if(action.equals("true")){
+				Toast.makeText(cordova.getActivity(), meg, Toast.LENGTH_SHORT).show();
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, meg));
             } else {
-            	Toast.makeText(cordova.getActivity(), "", Toast.LENGTH_LONG).show();
-                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, ""));
+            	Toast.makeText(cordova.getActivity(), meg, Toast.LENGTH_LONG).show();
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, meg));
 			}			
 		}
 		
