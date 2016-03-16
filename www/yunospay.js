@@ -12,15 +12,15 @@ module.exports = {
 
     pay: function (options, successCallback, errorCallback) {
         options = this.merge(this.ENTER_OPTIONS, options);
-          exec(successCallback, errorCallback, "YunOSOrder", "Pay", [options]);
+        cordova.exec(successCallback, errorCallback, "YunOSOrder", "Pay", [options]);
     },
 	
     change: function (mag, successCallback, errorCallback) {
-          exec(successCallback, errorCallback, "YunOSOrder", "Change", [mag]);
+        cordova.exec(successCallback, errorCallback, "YunOSOrder", "Change", [mag]);
     },
 	
     iandroid: function (mag, successCallback, errorCallback) {
-          exec(successCallback, errorCallback, "YunOSOrder", "Iandroid", [mag]);
+        cordova.exec(successCallback, errorCallback, "YunOSOrder", "Iandroid", [mag]);
     },
     
     merge: function () {
