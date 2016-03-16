@@ -7,7 +7,7 @@ module.exports = {
         subject_id: "123456789",
         subject: "百世天貓測試TV",
         price: "1", 
-        partner_notify_url: "http://www.bais.com.tw"
+        partner_notify_url: "http://kyytv.ebais.com.tw/yunospay.php"
     },
 
     pay: function (options, successCallback, errorCallback) {
