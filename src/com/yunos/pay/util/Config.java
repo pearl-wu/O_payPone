@@ -7,7 +7,7 @@ public class Config {
 	/**
 	 * 商户ID   1322 线上
 	 */
-	private static String partner          = "hzbashiqunxian01@163.com";
+	private static String partner          = "1024";
 	/**
 	 * 支付完后云OS支付后端用来通过商户支付结果的url
 	 */
