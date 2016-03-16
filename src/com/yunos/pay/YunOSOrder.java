@@ -21,9 +21,9 @@ import com.yunos.pay.util.Config;
 
 public class YunOSOrder extends CordovaPlugin {
 	
-	protected static final String LOG_TAG = "YunOSOrder__pay";
+  protected static final String LOG_TAG = "YunOSOrder__pay";
 	
-	public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
+  public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
 		
 		if(action.equals("Pay")){			
 			final JSONObject options = args.getJSONObject(0);
@@ -56,7 +56,7 @@ public class YunOSOrder extends CordovaPlugin {
 			return true;
 		}
 		return false;
-	}
+  }
 	
 
 	@SuppressLint("SimpleDateFormat") 
