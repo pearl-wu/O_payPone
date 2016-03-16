@@ -3,6 +3,7 @@ var exec = require("cordova/exec");
 module.exports = {
 
     ENTER_OPTIONS: {
+    	partner_order_no: "2016031600"
         subject_id: "123456789",
         subject: "test",
         price: "100",     //以,分為單位
