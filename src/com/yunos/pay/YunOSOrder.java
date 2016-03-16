@@ -31,8 +31,8 @@ public class YunOSOrder extends CordovaPlugin {
 		
 		if(action.equals("Pay")){			
 			final JSONObject options = args.getJSONObject(0);
-				///Log.i(LOG_TAG, "Pay Pay Pay Pay");
-				Resultecho(true, "(Pay)true---");
+			    ///Log.i(LOG_TAG, "Pay Pay Pay Pay");
+			    Resultecho(true, "(Pay)true---");
 			activity_pay(options);
 			return true;
 		}else if(action.equals("Change")){
@@ -42,11 +42,11 @@ public class YunOSOrder extends CordovaPlugin {
 					return false;
 				}else{
 					Resultecho(true, "---(IdChange)true---");
-						new Thread() {
-							public void run() {
-								Intent intent = new Intent();
-								intent.setClassName("com.yunos.tv.payment", "com.yunos.tv.payment.TVPayMainActivity");
-								intent.putExtra("operate", "alitv.unsign");
+					new Thread() {
+						public void run() {
+							Intent intent = new Intent();
+							intent.setClassName("com.yunos.tv.payment", "com.yunos.tv.payment.TVPayMainActivity");
+							intent.putExtra("operate", "alitv.unsign");
 				    			cordova.getActivity().startActivity(intent);
 				    		}
 				    	}.start();					
@@ -66,17 +66,16 @@ public class YunOSOrder extends CordovaPlugin {
 
 	@SuppressLint("SimpleDateFormat") 
 	public void activity_pay(final JSONObject options){	
-		
-			String msg;
-			String partner_order_no = null;
-			String subject_id = null;
+		String msg;
+		String partner_order_no = null;
+		String subject_id = null;
 	        String subject = null;
 	        String price = null;
 	        String partner_notify_url = null;
 	        
 	    
 	        PayClient payer = new PayClient();
-			YunOSOrderManager orderManager = new YunOSOrderManager();
+		YunOSOrderManager orderManager = new YunOSOrderManager();
 			
 			
 			try {
@@ -98,8 +97,8 @@ public class YunOSOrder extends CordovaPlugin {
 			
 		    if(partner_order_no == null){
 		        Date dt = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-				partner_order_no = sdf.format(dt);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+			partner_order_no = sdf.format(dt);
 	        }
 			
 			/***********************************CREATE**********************************************/
@@ -133,15 +132,12 @@ public class YunOSOrder extends CordovaPlugin {
 	}
 	
 	public void Resultecho(Boolean boo, String meg){
-			if(boo){
-				Toast.makeText(cordova.getActivity(), meg, Toast.LENGTH_SHORT).show();
+	   if(boo){
+		Toast.makeText(cordova.getActivity(), meg, Toast.LENGTH_SHORT).show();
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, meg));
             } else {
             	Toast.makeText(cordova.getActivity(), meg, Toast.LENGTH_LONG).show();
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, meg));
-			}			
-		
-		
+	    }			
 	}	
-
 }
