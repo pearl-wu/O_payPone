@@ -32,7 +32,6 @@ public class YunOSOrder extends CordovaPlugin {
 		if(action.equals("Pay")){			
 			final JSONObject options = args.getJSONObject(0);
 			    ///Log.i(LOG_TAG, "Pay Pay Pay Pay");
-			    Resultecho(true, "(Pay)true---");
 			activity_pay(options);
 			return true;
 		}else if(action.equals("Change")){
