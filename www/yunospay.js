@@ -6,7 +6,7 @@ module.exports = {
 	partner_order_no: "",
         subject_id: "123456789",
         subject: "百世天貓測試TV",
-        price: "0.1", 
+        price: "1", 
         partner_notify_url: "http://www.bais.com.tw"
     },
 
