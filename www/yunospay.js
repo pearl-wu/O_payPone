@@ -21,6 +21,15 @@ module.exports = {
 	
     iandroid: function (mag, successCallback, errorCallback) {
           exec(successCallback, errorCallback, "YunOSOrder", "Iandroid", [mag]);
+    },
+    
+    merge: function () {
+        var obj = {};
+        Array.prototype.slice.call(arguments).forEach(function(source) {
+            for (var prop in source) {
+                obj[prop] = source[prop];
+            }
+        });
+        return obj;
     }
-	
 };
