@@ -3,7 +3,7 @@ var exec = require("cordova/exec");
 module.exports = {
 
     ENTER_OPTIONS: {
-		partner_order_no: "",
+	partner_order_no: "",
         subject_id: "123456789",
         subject: "test",
         price: "100", 
@@ -19,7 +19,7 @@ module.exports = {
           exec(successCallback, errorCallback, "YunOSOrder", "Change", [mag]);
     },
 	
-	di function (mag, successCallback, errorCallback) {
+    iandroid: function (mag, successCallback, errorCallback) {
           exec(successCallback, errorCallback, "YunOSOrder", "Iandroid", [mag]);
     }
 	
