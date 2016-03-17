@@ -1,4 +1,4 @@
-package com.yunos.pay;
+package com.yunos.paydemo.activity;
 
 
 import java.text.SimpleDateFormat;
@@ -17,9 +17,9 @@ import android.provider.Settings.Secure;
 import com.aliyun.pay.client.PayClient;
 import com.aliyun.pay.client.YunOSPayResult;
 import com.aliyun.pay.order.YunOSOrderManager;
-import com.yunos.pay.util.Config;
+import com.yunos.paydemo.util.Config;
 
-public class YunOSOrder extends CordovaPlugin {
+public class MainActivity extends CordovaPlugin {
 	
   protected static final String LOG_TAG = "YunOSOrder__pay";
 	
