@@ -1,4 +1,4 @@
-package com.yunos.pay.util;
+package com.yunos.paydemo.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
