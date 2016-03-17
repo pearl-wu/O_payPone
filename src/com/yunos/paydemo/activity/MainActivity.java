@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import com.aliyun.pay.client.PayClient;
@@ -36,7 +37,7 @@ public class MainActivity extends CordovaPlugin {
 			if(!boo){
 			//Resultecho(true, "---(IdChange)false---", callbackContext);
 				return false;
-			else{
+			}else{
 				//Resultecho(true, "---(IdChange)true---", callbackContext);
 				new Thread() {
 					public void run() {
@@ -57,6 +58,7 @@ public class MainActivity extends CordovaPlugin {
 	  return true;
 	}
      return false;
+  
   }
 	
 
@@ -135,6 +137,11 @@ public class MainActivity extends CordovaPlugin {
 			this.options = options;
         	}
 		
+		public void execute() {
+			// TODO Auto-generated method stub
+			
+		}
+
 		public String doInBackground(Void... params) {
 		String partner_order_no = null;
 		String subject_id = null;
@@ -193,3 +200,5 @@ public class MainActivity extends CordovaPlugin {
 			return msg;
 		}
 	}
+	
+  }
