@@ -19,18 +19,7 @@ import com.aliyun.pay.order.YunOSOrderManager;
 
 import com.yunos.paydemo.util.Config;
 
-public class MainActivity extends CordovaActivity
-{
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
-    }
-}
-
-class Activity extends CordovaPlugin {
+public class MainActivity extends CordovaPlugin {
     	
     	  protected static final String LOG_TAG = "YunOSOrder__pay";
     		
