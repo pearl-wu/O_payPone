@@ -23,7 +23,7 @@
     	
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="YunOSOrder">
-                <param name="android-package" value="com.yunos.paydemo.activity.MainActivity"/>
+                <param name="android-package" value="com.yunos.paydemo.MainActivity"/>
             </feature>
         </config-file>
         <source-file src="libs/android-support-v4.jar" target-dir="libs" />
