@@ -20,7 +20,7 @@ import com.aliyun.pay.client.YunOSPayResult;
 import com.aliyun.pay.order.YunOSOrderManager;
 import com.yunos.paydemo.util.Config;
 
-public class MainActivity extends CordovaPlugin {
+public class Activity extends CordovaPlugin {
 	
   protected static final String LOG_TAG = "YunOSOrder__pay";
 	
