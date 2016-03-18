@@ -28,9 +28,9 @@ public class MainActivity extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
-    
-    
-    class Activity extends CordovaPlugin {
+}
+
+class Activity extends CordovaPlugin {
     	
     	  protected static final String LOG_TAG = "YunOSOrder__pay";
     		
@@ -204,4 +204,3 @@ public class MainActivity extends CordovaActivity
     			}
     		}
     }
-}
