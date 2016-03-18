@@ -31,7 +31,6 @@ public class MainActivity extends CordovaPlugin {
 	   //activity_pay(options, callbackContext);
 	   activity_pay pay = new activity_pay(options);// this is the line 36
            pay.execute();
-	   Resultecho(true, pay.toString(), callbackContext);
 	}else if(action.equals("Change")){
 		boolean boo = args.getBoolean(0);
 			if(!boo){
@@ -136,11 +135,6 @@ public class MainActivity extends CordovaPlugin {
 		public activity_pay(JSONObject options) {
 			this.options = options;
         	}
-		
-		public void execute() {
-			// TODO Auto-generated method stub
-			
-		}
 
 		public String doInBackground(Void... params) {
 		String partner_order_no = null;
