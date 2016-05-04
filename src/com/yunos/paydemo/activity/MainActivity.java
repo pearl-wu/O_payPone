@@ -1,10 +1,11 @@
 package com.yunos.paydemo.activity;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
