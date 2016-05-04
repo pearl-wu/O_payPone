@@ -54,6 +54,33 @@ public class MainActivity extends CordovaPlugin {
     			  Resultecho(true, androidId, callbackContext);
     			}
     		  return true;
+    		}else if(action.equals("packageinfo")){
+    			int no = args.getInt(0);
+    			String packageinfo="";
+    			if(no==1){
+    				//packageName
+    				packageinfo = cordova.getActivity().getPackageName();				    				
+    			}else if(no==2){
+    				//strVersionCode
+    		        try {
+    		            PackageInfo packageInfo = cordova.getActivity().getPackageManager().getPackageInfo(cordova.getActivity().getPackageName(),0);
+    		            packageinfo = String.valueOf(packageInfo.versionCode);
+    		        } catch (NameNotFoundException e) {
+    		            // TODO Auto-generated catch block
+    		            e.printStackTrace();
+    		        }  				
+    			}else if(no==3){
+    		        try {
+    		        	PackageInfo packageInfo = cordova.getActivity().getPackageManager().getPackageInfo(cordova.getActivity().getPackageName(),0);
+    		        	packageinfo = packageInfo.versionName;
+    		        } catch (NameNotFoundException e) {
+    		            // TODO Auto-generated catch block
+    		            e.printStackTrace();
+    		            packageinfo = "Cannot load Version!";
+    		        }  	  				
+    			}
+    			
+    			Resultecho(true, packageinfo, callbackContext);
     		}
     	     return false;
     	  
