@@ -55,7 +55,7 @@ public class MainActivity extends CordovaPlugin {
     			  Resultecho(true, androidId, callbackContext);
     			}
     		  return true;
-    		}else if(action.equals("packageinfo")){
+    		}else if(action.equals("Packageinfo")){
     			int no = args.getInt(0);
     			String packageinfo="";
     			if(no==1){
