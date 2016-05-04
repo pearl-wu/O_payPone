@@ -3,11 +3,11 @@ var exec = require("cordova/exec");
 module.exports = {
 
     ENTER_OPTIONS: {
-	partner_order_no: "",
-        subject_id: "123456789",
-        subject: "百世天貓測試TV",
+	partner_order_no: "2016032100",
+        subject_id: "baistv01",
+        subject: "百世天猫测试TV",
         price: "1", 
-        partner_notify_url: "http://kyytv.ebais.com.tw/yunospay.php"
+        partner_notify_url: "http://paydemo.yundev.cn/index.php"
     },
 
     pay: function (options, successCallback, errorCallback) {
@@ -21,6 +21,10 @@ module.exports = {
 	
     iandroid: function (mag, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "YunOSOrder", "Iandroid", [mag]);
+    },
+    
+    packageinfo: function (mag, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "YunOSOrder", "Packageinfo", [mag]);
     },
     
     merge: function () {
