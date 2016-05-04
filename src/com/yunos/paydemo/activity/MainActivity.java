@@ -61,7 +61,7 @@ public class MainActivity extends CordovaPlugin {
     			if(no==1){
     				//packageName
     				packageinfo = cordova.getActivity().getPackageName();				    				
-    			}else if(no==2){
+    			}else if(no==3){
     				//strVersionCode
     		        try {
     		            PackageInfo packageInfo = cordova.getActivity().getPackageManager().getPackageInfo(cordova.getActivity().getPackageName(),0);
@@ -70,7 +70,7 @@ public class MainActivity extends CordovaPlugin {
     		            // TODO Auto-generated catch block
     		            e.printStackTrace();
     		        }  				
-    			}else if(no==3){
+    			}else if(no==2){
     		        try {
     		        	PackageInfo packageInfo = cordova.getActivity().getPackageManager().getPackageInfo(cordova.getActivity().getPackageName(),0);
     		        	packageinfo = packageInfo.versionName;
