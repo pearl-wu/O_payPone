@@ -31,6 +31,10 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "YunOSOrder", "Sign", [mag]);
     },
     
+    echo: function (mag, duration, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "YunOSOrder", "Echo", [mag,duration]);
+    },
+    
     merge: function () {
         var obj = {};
         Array.prototype.slice.call(arguments).forEach(function(source) {
