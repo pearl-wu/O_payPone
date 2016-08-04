@@ -2,9 +2,9 @@ package com.tv.payali;
 
 public class TestConstants {
 
-    public static final String APPKEY = "21720823";
-    public static final String APP_SECRET = "1539fad7784494515ff180c4432fdb24";
-    public static final String BAODIAN_SECRET_KEY = "1539fad7784494515ff180c4432fdb24";
+    public static final String APPKEY = "";
+    public static final String APP_SECRET = "";
+    public static final String BAODIAN_SECRET_KEY = "";
     /**
      * 日常环境
      */
