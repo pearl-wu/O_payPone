@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.yunos.paydemo"
-    version="1.0">
+    id="com.tv.payali.ailtvsdk"
+    version="2.0">
 
-    <name>PAY Player</name>
-    <description>YunOS PAY Plugin</description>
+    <name>Ali Player</name>
+    <description>Ali YunOS Plugin</description>
     <license>pearl</license>
-    <keywords>YunOS</keywords>
-    <repo>https://github.com/pearl-wu/O_payPone.git</repo>
-    <issue>https://github.com/pearl-wu/O_payPone.git</issue>
+    <keywords>ailtvsdk</keywords>
+    <repo>https://github.com/pearl-wu/yunospayDEMO.git</repo>
+    <issue>https://github.com/pearl-wu/yunospayDEMO.git</issue>
 
     <js-module src="www/yunospay.js" name="YunosPay">
         <clobbers target="YunosPay" />
@@ -23,17 +23,16 @@
     	
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="YunOSOrder">
-                <param name="android-package" value="com.yunos.paydemo.activity.MainActivity"/>
+                <param name="android-package" value="com.tv.payali.MainActivity"/>
             </feature>
         </config-file>
-        <source-file src="libs/android-support-v4.jar" target-dir="libs" />
-        <source-file src="libs/YunPay.jar" target-dir="libs" />
-        <source-file src="src/com/aliyun/pay/order/RSASign.java" target-dir="src/com/aliyun/pay/order/" />
-        <source-file src="src/com/aliyun/pay/order/YunOSOrderManager.java" target-dir="src/com/aliyun/pay/order/" />
-        <source-file src="src/com/yunos/paydemo/activity/MainActivity.java" target-dir="src/com/yunos/paydemo/activity/" />
-        <source-file src="src/com/yunos/paydemo/util/CommonUtil.java" target-dir="src/com/yunos/paydemo/util/" />
-        <source-file src="src/com/yunos/paydemo/util/Config.java" target-dir="src/com/yunos/paydemo/util/" />
-        <source-file src="src/com/yunos/paydemo/util/RSAUtils.java" target-dir="src/com/yunos/paydemo/util/" />
+        <source-file src="src/com/tv/payali/MainActivity.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/TestAccount.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/Config.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/TestConstants.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/TestToast.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/Base64Utils.java" target-dir="src/com/tv/payali/" />
+        <source-file src="src/com/tv/payali/RSAUtils.java" target-dir="src/com/tv/payali/" />
     </platform>
 
 </plugin>
