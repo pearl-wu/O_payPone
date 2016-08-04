@@ -28,7 +28,6 @@
         </config-file>
         <source-file src="src/com/tv/payali/MainActivity.java" target-dir="src/com/tv/payali/" />
         <source-file src="src/com/tv/payali/TestAccount.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/Config.java" target-dir="src/com/tv/payali/" />
         <source-file src="src/com/tv/payali/TestConstants.java" target-dir="src/com/tv/payali/" />
         <source-file src="src/com/tv/payali/TestToast.java" target-dir="src/com/tv/payali/" />
         <source-file src="src/com/tv/payali/Base64Utils.java" target-dir="src/com/tv/payali/" />
