@@ -1,7 +1,6 @@
 package com.tv.payali;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -10,11 +9,6 @@ import android.os.Message;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.de.aligame.api.AliTvSdk;
-import com.de.aligame.core.api.Listeners;
-import com.de.aligame.core.api.Listeners.IPayListener;
-import com.de.aligame.core.ui.view.AliSmartViewFocusFrame;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
@@ -31,102 +25,29 @@ public class MainActivity extends CordovaPlugin {
 
 	protected static final String LOG_TAG = "aliOrder__pay";
 	public static final int MSG_SHOW_TOAST = 1;
-	AliSmartViewFocusFrame smartView;
-	private DemoPayListener mPayListener = new DemoPayListener();
-
-	public static Handler handler = new Handler() {
-
-		@Override
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);
-			switch (msg.what) {
-				case MSG_SHOW_TOAST:
-					String errorStr = (String) msg.obj;
-					Log.d(LOG_TAG, "handle message. obj=" + msg.obj);
-					try {
-						//Toast.makeText(cordova.getActivity(), errorStr, Toast.LENGTH_LONG).show();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					break;
-				default:
-					break;
-			}
-		}
-
-	};
-
-	public void initTvSDK(Context context) {
-
-		AliTvSdk.logSwitch(true);
-
-		String appkey = TestConstants.APPKEY;
-		String appSecret = TestConstants.APP_SECRET;
-
-		AliTvSdk.init(context, appkey, appSecret, new Listeners.IInitListener() {
-
-			public void onInitFinish() {
-				TestToast.show("init aliTvSdk ok. get auth = " + AliTvSdk.Account.isAuth());
-				Log.d(LOG_TAG, "onInitFinish");
-		
-				AliTvSdk.Web.openWebviewOnStart(new Listeners.IWebListener() {
-
-					public void onWebOpen() {
-						TestToast.show("init openWebviewOnStart onWebOpen" );
-					}
-
-					public void onWebClose() {
-						TestToast.show("init openWebviewOnStart onWebClose");
-
-					}
-				}, null);
-			}
-
-			public void onInitError(String errorMsg) {
-				TestToast.show(errorMsg);
-			}
-		}, new TestAccount());
-
-	}
-
 
 	public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
 
 		if(action.equals("Pay")){
 			
 			final JSONObject options = args.getJSONObject(0);
-			
-			initTvSDK(cordova.getActivity());
+
 			Toast.makeText(cordova.getActivity(), "PAY PAY PAY", Toast.LENGTH_LONG).show();
-			activity_pay(options);
 
 			// Resultecho(true, pay.toString(), callbackContext);
 			return true;
-		}else if(action.equals("Change")){
-			boolean boo = args.getBoolean(0);
-			if(!boo){
-				//Resultecho(true, "---(IdChange)false---", callbackContext);
-				return false;
-			}else{
-				//Resultecho(true, "---(IdChange)true---", callbackContext);
-				new Thread() {
-					public void run() {
-						Intent intent = new Intent();
-						intent.setClassName("com.yunos.tv.payment", "com.yunos.tv.payment.TVPayMainActivity");
-						intent.putExtra("operate", "alitv.unsign");
-						cordova.getActivity().startActivity(intent);
-					}
-				}.start();
-			}
-			return true;
+			
 		}else if(action.equals("Iandroid")){
+			
 			boolean tr = args.getBoolean(0);
 			if(tr){
 				String androidId = Secure.getString(cordova.getActivity().getContentResolver(), Secure.ANDROID_ID);
 				Resultecho(true, androidId, callbackContext);
 			}
 			return true;
+			
 		}else if(action.equals("Packageinfo")){
+			
 			int no = args.getInt(0);
 			String packageinfo="";
 			if(no==1){
@@ -153,10 +74,11 @@ public class MainActivity extends CordovaPlugin {
 			}
 			Resultecho(true, packageinfo, callbackContext);
 			return true;
+			
 		}else if(action.equals("Echo")){
+			
 			String context = args.getString(0);
 			int duration = args.getInt(1);
-
 			Toast.makeText(cordova.getActivity(), context, Toast.LENGTH_LONG).show();
 
     			/*Toast mToast = new Toast(cordova.getActivity());
@@ -170,6 +92,7 @@ public class MainActivity extends CordovaPlugin {
                                 mToast.show();*/
 
 			return true;
+			
 		}else if(action.equals("Sign")){
 
     			/*String mag = RSASign.sign(args.getString(0), Config.getPrikey(), "utf-8" );
@@ -214,106 +137,12 @@ public class MainActivity extends CordovaPlugin {
 
 	}
 
-
-	private ContextWrapper getResources() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	public void Resultecho(Boolean boo, String meg, CallbackContext callbackContext){
 		if(boo){
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, meg));
 		} else {
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, meg));
 		}
-	}
-
-
-	private class DemoPayListener implements IPayListener {
-
-		public void onSuccess(String title, int amount) {
-			TestToast.show(title + " 支付成功");
-			setAnimOn();
-		}
-
-		public void onCancel(String title, int amount) {
-			TestToast.show(title + " 支付取消");
-			setAnimOn();
-		}
-
-		public void onError(String title, int amount, String errMsg) {
-			TestToast.show(title + " 支付失败。" + errMsg);
-			setAnimOn();
-		}
-	}
-
-	private  Handler mHandler = new Handler(){
-		@Override
-		public void handleMessage(Message msg)
-		{
-			if( msg.what == 1){
-				smartView.setAnimOn(true);
-			}
-		}
-	};
-
-	private void setAnimOn() {
-		mHandler.sendMessage(mHandler.obtainMessage(1));
-	}
-
-
-	// 单机无激励支付
-	private void doPay(String title, String amount, IPayListener payListener) {
-		AliTvSdk.pay(title, amount, payListener);
-	}
-
-	// 单机有激励支付
-	private void doPay(String title,String subjectId, String amount, IPayListener payListener) {
-		AliTvSdk.pay(title, subjectId, amount, payListener);
-	}
-
-	// CP服务器生成订单号后支付（无激励）
-	private void doPayFromServer(String title, String amount, String orderId, String notifyUrl, IPayListener payListener) {
-		AliTvSdk.payFromServer(title, amount, orderId, notifyUrl, payListener);
-	}
-	// CP服务器生成订单号后支付（有激励）
-	private void doPayFromServer(String title, String amount, String orderId, String notifyUrl,String subjectId, IPayListener payListener) {
-		AliTvSdk.payFromServer(title, amount, orderId, notifyUrl, subjectId, payListener);
-	}
-
-
-	private void activity_pay(JSONObject options){
-
-		String partner_order_no = null;
-		//String subject_id = null;
-		String subject = null;
-		String price = null;
-		String partner_notify_url = null;
-		Date dt = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-
-		try {
-			//subject_id = options.getString("subject_id");
-			subject = options.getString("subject");
-			price = options.getString("price");
-			partner_notify_url = options.getString("partner_notify_url");
-			partner_order_no = options.getString("partner_order_no");
-		} catch (Exception e) {
-			//PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-			// result.setKeepCallback(false); // release status callback in JS side
-			// callbackContext.sendPluginResult(result);
-		}
-
-		if(partner_order_no.equals("")){
-			partner_order_no = sdf.format(dt);
-		}
-
-		//doPay(subject, price, mPayListener);
-		//doPay(subject, product1.mSubjectId, price, mPayListener);
-		doPayFromServer(subject, price, partner_order_no, partner_notify_url, mPayListener);
-		//doPayFromServer(subject, price, partner_order_no, partner_notify_url, product3.mSubjectId, mPayListener);
-
 	}
 
 }
