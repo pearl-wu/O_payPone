@@ -5,7 +5,7 @@ import com.de.aligame.core.api.AliBaseError;
 import com.de.aligame.core.api.Listeners.IAuthListener;
 import com.de.aligame.core.api.Listeners.IGetUserinfoListener;
 import com.de.aligame.core.api.Listeners.UserInfo;
-import com.yunos.paydemo.activity.TestToast;
+import com.tv.payali.TestToast;
 import android.util.Log;
 
 public class TestAccount implements IAuthListener {
