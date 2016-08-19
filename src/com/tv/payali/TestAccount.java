@@ -5,7 +5,6 @@ import com.de.aligame.core.api.AliBaseError;
 import com.de.aligame.core.api.Listeners.IAuthListener;
 import com.de.aligame.core.api.Listeners.IGetUserinfoListener;
 import com.de.aligame.core.api.Listeners.UserInfo;
-import com.tv.payali.TestToast;
 import android.util.Log;
 
 public class TestAccount implements IAuthListener {
@@ -18,9 +17,9 @@ public class TestAccount implements IAuthListener {
     public static void checkAuthWithoutLogin() {
         boolean isAuth = AliTvSdk.Account.isAuth();
         if (isAuth) {
-            TestToast.show("用户已授权");
+           // TestToast.show("用户已授权");
         } else {
-            TestToast.show("用户未授权");
+           // TestToast.show("用户未授权");
         }
     }
 
@@ -30,9 +29,9 @@ public class TestAccount implements IAuthListener {
     public static void checkAuthAndLogin() {
         boolean isAuth = AliTvSdk.Account.checkAuthAndLogin();
         if (isAuth) {
-            TestToast.show("用户已授权");
+           // TestToast.show("用户已授权");
         } else {
-            TestToast.show("用户未授权，请扫码登录");
+           // TestToast.show("用户未授权，请扫码登录");
         }
     }
 
@@ -43,14 +42,14 @@ public class TestAccount implements IAuthListener {
             public void onSuccess(UserInfo userInfo) {
                 Log.d(TAG, "userinfo nick:" + userInfo.getUserNick() + ", id:" + userInfo.getUserId()
                 		+ " headUrl:"+userInfo.getAvatarUrl());
-                TestToast.show("nick:" + userInfo.getUserNick() + ", id:" + userInfo.getUserId()
-                		+ " headUrl:"+userInfo.getAvatarUrl());
+                //TestToast.show("nick:" + userInfo.getUserNick() + ", id:" + userInfo.getUserId()
+                		//+ " headUrl:"+userInfo.getAvatarUrl());
             }
 
             @Override
             public void onError(int errCode) {
                 Log.d(TAG, "get userinfo error:" + errCode + " " + AliBaseError.getErrMsg(errCode));
-                TestToast.show(AliBaseError.getErrMsg(errCode) + "=====");
+                //TestToast.show(AliBaseError.getErrMsg(errCode) + "=====");
             }
         });
     }
@@ -62,7 +61,7 @@ public class TestAccount implements IAuthListener {
     @Override
     public void onAuthSucess(int from) {
         Log.d(TAG, "onAuthSucess. from=" + from);
-        TestToast.show("授权成功===" + from);
+        //TestToast.show("授权成功===" + from);
     }
 
     @Override
@@ -70,16 +69,16 @@ public class TestAccount implements IAuthListener {
         Log.d(TAG, "onAuthError:" + errCode + " errMsg:" + errMsg);
         if (errCode == AliBaseError.INT_ERROR_AUTH_OTHER) {
         }
-        TestToast.show(errMsg);
+        //TestToast.show(errMsg);
     }
 
     @Override
     public void onLogout() {
-        TestToast.show("用户退出");
+       // TestToast.show("用户退出");
     }
 
     @Override
     public void onAuthCancel() {
-        TestToast.show("取消授权");
+       // TestToast.show("取消授权");
     }
 }
