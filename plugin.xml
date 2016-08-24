@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.tv.payali.ailtvsdk"
+    id="com.pay.sdk"
     version="2.0">
 
     <name>Ali Player</name>
-    <description>Ali YunOS Plugin</description>
+    <description> Pay Plugin</description>
     <license>pearl</license>
-    <keywords>ailtvsdk</keywords>
-    <repo>https://github.com/pearl-wu/yunospayDEMO.git</repo>
-    <issue>https://github.com/pearl-wu/yunospayDEMO.git</issue>
+    <keywords>Paysdk</keywords>
+    <repo>https://github.com/pearl-wu/PAYdemo.git</repo>
+    <issue>https://github.com/pearl-wu/PAYdemo.git</issue>
 
-    <js-module src="www/yunospay.js" name="YunosPay">
-        <clobbers target="YunosPay" />
+    <js-module src="www/paysdk.js" name="paysdk">
+        <clobbers target="paysdk" />
     </js-module>
 	
     <platform name="android">
@@ -22,17 +22,12 @@
 	</config-file>
     	
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="YunOSOrder">
-                <param name="android-package" value="com.tv.payali.MainActivity"/>
+            <feature name="paysdk">
+                <param name="android-package" value="com.pay.sdk.MainActivity"/>
             </feature>
         </config-file>
         <source-file src="libs/javabase64-1.3.1.jar" target-dir="libs/" />
         <source-file src="src/com/tv/payali/MainActivity.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/TestAccount.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/TestConstants.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/TestToast.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/Base64Utils.java" target-dir="src/com/tv/payali/" />
-        <source-file src="src/com/tv/payali/RSAUtils.java" target-dir="src/com/tv/payali/" />
         <source-file src="src/com/tv/payali/RSASign.java" target-dir="src/com/tv/payali/" />
     </platform>
 
