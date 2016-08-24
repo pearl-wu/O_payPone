@@ -12,23 +12,23 @@ module.exports = {
 
     pay: function (options, successCallback, errorCallback) {
         options = this.merge(this.ENTER_OPTIONS, options);
-        cordova.exec(successCallback, errorCallback, "paysdk", "Pay", [options]);
+        cordova.exec(successCallback, errorCallback, "payPlugin", "Pay", [options]);
     },
 	
     iandroid: function (mag, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "paysdk", "Iandroid", [mag]);
+        cordova.exec(successCallback, errorCallback, "payPlugin", "Iandroid", [mag]);
     },
     
     packageinfo: function (mag, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "paysdk", "Packageinfo", [mag]);
+        cordova.exec(successCallback, errorCallback, "payPlugin", "Packageinfo", [mag]);
     },
     
     sign: function (mag, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "paysdk", "Sign", [mag]);
+        cordova.exec(successCallback, errorCallback, "payPlugin", "Sign", [mag]);
     },
     
     echo: function (mag, duration, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "paysdk", "Echo", [mag,duration]);
+        cordova.exec(successCallback, errorCallback, "payPlugin", "Echo", [mag,duration]);
     },
     
     merge: function () {
