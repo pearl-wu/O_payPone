@@ -1,4 +1,4 @@
-package com.tv.payali;
+package com.pay.sdk;
 
 import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
@@ -28,8 +28,7 @@ import java.util.Date;
 
 public class MainActivity extends CordovaPlugin {
 
-	protected static final String LOG_TAG = "aliOrder__pay";
-	public static final int MSG_SHOW_TOAST = 1;
+	protected static final String LOG_TAG = "Order__pay";
 	AliSmartViewFocusFrame smartView;
 	private DemoPayListener mPayListener = new DemoPayListener();
 
