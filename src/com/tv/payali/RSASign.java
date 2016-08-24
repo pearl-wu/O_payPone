@@ -1,4 +1,4 @@
-package com.tv.payali;
+package com.pay.sdk;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;
